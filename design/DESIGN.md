@@ -1,104 +1,104 @@
-# Carranam — візуал і дизайн
+# Carranam: Design Guide
 
-Живий макет з усіма екранами (можна клікати): [відкрити полотно](https://claude.ai/artifact/1HPMj4AmYbHgtNn2qLizX4)
+Interactive prototype with all screens: [open the design canvas](https://claude.ai/artifact/1HPMj4AmYbHgtNn2qLizX4) (Ukrainian UI)
 
-![Візуальний гайд](overview.png)
+![Visual guide](overview.png)
 
-## Екрани
+## Screens
 
-| Сьогодні | Справи | Нова справа |
+| Today | Tasks | New task |
 |---|---|---|
 | ![](screens/01-today.png) | ![](screens/02-tasks.png) | ![](screens/03-new-task.png) |
 
-| Мурзік | Прогрес | Сьогодні очима партнера |
+| Murzik | Progress | Today, partner's view |
 |---|---|---|
 | ![](screens/04-murzik.png) | ![](screens/05-progress.png) | ![](screens/06-today-partner-view.png) |
 
-## Стиль
+## Visual direction
 
-Світлий і чистий, у дусі Apple Reminders: білий фон, м'які заокруглені картки без обводок, один шрифт. Мальований від руки лише котик Мурзік, тому на чистому фоні він привертає увагу.
+Light and clean, in the spirit of Apple Reminders: a white background, soft rounded cards without borders, and a single typeface. The only hand-drawn element is the character, Murzik, which makes him the focal point of every screen.
 
-**Головний прийом — картка як прогрес.** Фон картки справи заливається зліва направо: справу на 2 з 5 розділів залито на 40%, виконану справу повністю.
+**The card is the progress bar.** Each task card fills from left to right as it progresses: a task at 2 of 5 chapters is 40% filled, and a completed task is fully filled.
 
-## Кольори
+## Color
 
-Колір закріплено **за людиною**, а не за словом «я», тому на обох телефонах кольори однакові.
+Colors are assigned **to people, not to "Me"**, so both partners see the same colors on their devices.
 
-| Токен | Колір | Де використовується |
+| Token | Value | Usage |
 |---|---|---|
-| `owner.me.fill` / `track` | `#F8D5DF` / `#FDF1F4` | картки й половинка миски першого партнера |
-| `owner.partner.fill` / `track` | `#D5E3F8` / `#F0F5FD` | картки й половинка миски другого партнера |
-| `owner.together.fill` / `track` | `#E4DBF5` / `#F6F2FB` | спільні справи |
-| `brand.pink` | `#E8668A` | кнопка «+», кільце сьогоднішнього дня, сегменти миски |
-| `brand.pinkDark` | `#C23A6B` | посилання, активний пункт меню (контраст ≥ 4.5:1) |
-| `text.primary` / `secondary` / `muted` | `#2A2326` / `#4A4045` / `#6F6469` | текст |
-| `cat.cardBackground` | `#FFF4F7` | картка Мурзіка |
-| `status.success` | `#34A853` | галочка виконаної справи |
-| `status.streakFlame` | `#FF9F43` | вогник стріку |
+| `owner.me.fill` / `track` | `#F8D5DF` / `#FDF1F4` | First partner's cards and half of the bowl |
+| `owner.partner.fill` / `track` | `#D5E3F8` / `#F0F5FD` | Second partner's cards and half of the bowl |
+| `owner.together.fill` / `track` | `#E4DBF5` / `#F6F2FB` | Shared tasks |
+| `brand.pink` | `#E8668A` | Add button, today's progress ring, bowl segments |
+| `brand.pinkDark` | `#C23A6B` | Links and active navigation item (≥ 4.5:1 contrast) |
+| `text.primary` / `secondary` / `muted` | `#2A2326` / `#4A4045` / `#6F6469` | Text |
+| `cat.cardBackground` | `#FFF4F7` | Murzik card |
+| `status.success` | `#34A853` | Completed task check |
+| `status.streakFlame` | `#FF9F43` | Streak indicator |
 
-Усі значення лежать у [`tokens.json`](tokens.json).
+All values are available in [`tokens.json`](tokens.json).
 
-## Шрифт
+## Typography
 
-**Nunito** (Google Fonts, підтримує кирилицю), насиченість 600–900.
+**Nunito** (Google Fonts, Latin and Cyrillic), weights 600–900.
 
-| Роль | Розмір / насиченість |
+| Role | Size / weight |
 |---|---|
-| Заголовок екрана | 30 / 900 |
-| Ім'я котика | 21 / 900 |
-| Заголовок розділу | 17–18 / 900 |
-| Назва справи | 16 / 800 |
-| Текст | 14 / 700 |
-| Мета, чіпи | 12 / 700–800 |
-| Нижнє меню | 11 / 800 |
+| Screen title | 30 / 900 |
+| Pet name | 21 / 900 |
+| Section title | 17–18 / 900 |
+| Task title | 16 / 800 |
+| Body | 14 / 700 |
+| Metadata, chips | 12 / 700–800 |
+| Bottom navigation | 11 / 800 |
 
-## Компоненти
+## Components
 
-- **Картка справи** заввишки 64 px, радіус 20. Зліва плитка-іконка 40×40, потім назва, чіп прогресу («2/5») і мета («я · щодня»). Справа стрік і кружечок-галочка (зона тапу 44 px). Заливка фону показує прогрес, анімація 450 мс.
-- **Картка Мурзіка** з радіусом 26 і фоном `#FFF4F7`. У ній котик 136 px, ім'я, стрік, підказка і два рядки миски по 3 сегменти.
-- **Смужка тижня** — 7 кружечків по 44 px з мордочкою котика. Сьогоднішній день показано кільцем, що заповнюється (conic-gradient).
-- **Сегментований перемикач** у стилі iOS: сірий фон, вибраний сегмент білий з тінню, висота 44 px.
-- **Нижнє меню**: Сьогодні · Справи · «+» · Мурзік · Прогрес. Кнопка «+» — рожеве коло 54 px.
+- **Task card.** 64 px tall, 20 px radius. A 40×40 icon tile on the left, followed by the title, a progress chip ("2/5") and metadata ("Me · daily"). On the right: the streak and a check circle with a 44 px touch target. The background fill shows progress and animates over 450 ms.
+- **Pet card.** 26 px radius on `#FFF4F7`, containing the 136 px character, name, streak, a contextual hint and two rows of bowl segments, three per partner.
+- **Week strip.** Seven 44 px circles showing the pet's face for each day. Today is shown as a progress ring (conic gradient).
+- **Segmented control.** iOS style: gray track, selected segment in white with a soft shadow, 44 px tall.
+- **Bottom navigation.** Today · Tasks · Add · Murzik · Progress. The Add button is a 54 px pink circle.
 
-## Мурзік
+## Character
 
-Котика намалювала Тетяна від руки, а емоції домальовані в тому ж стилі.
+Murzik was hand-drawn by Tetiana Miskevych. Additional emotions were drawn in the same style.
 
-| Файл | Настрій | Коли |
+| File | Mood | When |
 |---|---|---|
-| [`murzik-waiting.png`](murzik/murzik-waiting.png) | Чекає | 3–5 порцій з 6 |
-| [`murzik-hungry.png`](murzik/murzik-hungry.png) | Голодний | 0–2 порції |
-| [`murzik-eating.png`](murzik/murzik-eating.png) | Їсть | ~1,3 с після відмітки справи |
-| [`murzik-happy.png`](murzik/murzik-happy.png) | Щасливий | миска повна |
-| [`murzik-sleeping.png`](murzik/murzik-sleeping.png) | Спить | 23:00–07:00 |
-| [`murzik-sad.png`](murzik/murzik-sad.png) | Сумує | учора миска не була повною |
+| [`murzik-waiting.png`](murzik/murzik-waiting.png) | Waiting | 3–5 of 6 portions |
+| [`murzik-hungry.png`](murzik/murzik-hungry.png) | Hungry | 0–2 portions |
+| [`murzik-eating.png`](murzik/murzik-eating.png) | Eating | about 1.3 s after a task is completed |
+| [`murzik-happy.png`](murzik/murzik-happy.png) | Happy | bowl is full |
+| [`murzik-sleeping.png`](murzik/murzik-sleeping.png) | Sleeping | 23:00–07:00 |
+| [`murzik-sad.png`](murzik/murzik-sad.png) | Sad | yesterday's bowl was not full |
 
-Оригінальний скетч лежить у [`murzik/murzik-original-sketch.jpg`](murzik/murzik-original-sketch.jpg).
+The original sketch is in [`murzik/murzik-original-sketch.jpg`](murzik/murzik-original-sketch.jpg).
 
-**Етапи росту** ([`murzik/stages/`](murzik/stages)): кошеня → підліток з бантиком (7 днів) → дорослий із шарфиком (30) → король у короні (100).
-Аксесуари є і окремими SVG у [`accessories/`](accessories). Вони накладаються на малюнок котика в тій самій системі координат (`viewBox 0 0 676 596`).
+**Growth stages** ([`murzik/stages/`](murzik/stages)): kitten, teen with a bow (7 days), adult with a scarf (30 days), king with a crown (100 days).
+The accessories are also available as separate SVG files in [`accessories/`](accessories). They share the character's coordinate system (`viewBox 0 0 676 596`), so they can be layered directly on top of the artwork.
 
-## Іконки
+## Icons
 
-Усі в [`icons/`](icons): SVG 24×24, обведення 2 px, заокруглені кінці, колір `#4A4045` (у коді можна замінити на `currentColor`).
+All icons are in [`icons/`](icons): 24×24 SVG, 2 px stroke, round caps and joins, color `#4A4045` (replace with `currentColor` in code).
 
-- Навігація: `today`, `tasks`, `cat`, `progress`, `plus`
-- Стан: `check`, `flame`, `bowl`, `heart`, `crown`
-- Справи: `task-workout`, `task-yoga`, `task-cleaning`, `task-study`, `task-health`, `task-movie`, `task-call`, `task-car`, `task-reading`, `task-cooking`, `task-shopping`, `task-together`
+- Navigation: `today`, `tasks`, `cat`, `progress`, `plus`
+- Status: `check`, `flame`, `bowl`, `heart`, `crown`
+- Task categories: `task-workout`, `task-yoga`, `task-cleaning`, `task-study`, `task-health`, `task-movie`, `task-call`, `task-car`, `task-reading`, `task-cooking`, `task-shopping`, `task-together`
 
-## Іконка застосунку
+## App icon
 
-У [`app-icon/`](app-icon) щасливий Мурзік на рожевому фоні `#F8D5DF`:
-- `icon-1024.png`: App Store / джерело
-- `icon-512.png`, `icon-192.png`: маніфест PWA
-- `maskable-512.png`: maskable-іконка для Android (з більшим відступом)
-- `apple-touch-icon-180.png`: iOS, коли застосунок додано на домашній екран
-- `favicon-32.png`: вкладка браузера
+[`app-icon/`](app-icon) contains the happy Murzik on a pink `#F8D5DF` background:
+- `icon-1024.png`: source and App Store size
+- `icon-512.png`, `icon-192.png`: PWA manifest
+- `maskable-512.png`: Android maskable icon with a larger safe area
+- `apple-touch-icon-180.png`: iOS home screen
+- `favicon-32.png`: browser tab
 
-## Доступність
+## Accessibility
 
-- Контраст тексту ≥ 4.5:1: приглушений `#6F6469` на білому дає 5.7:1, `#C23A6B` дає 5.1:1
-- ⚠️ На повністю залитій рожевій картці `#6F6469` дає лише 4.2:1, тому в коді мету на залитих картках краще писати `#4A4045` (7:1+)
-- Зони тапу ≥ 44 px
-- Власник справи позначається і кольором, і текстом («я», ім'я партнера, «разом»), тому колір не єдиний носій інформації
-- Анімації котика вимикаються, якщо в системі ввімкнено «зменшити рух»
+- Text contrast of at least 4.5:1: muted `#6F6469` on white is 5.7:1 and `#C23A6B` is 5.1:1.
+- On a fully filled pink card, `#6F6469` drops to 4.2:1, so metadata on filled cards should use `#4A4045` (over 7:1) in production.
+- Touch targets are at least 44 px.
+- Task ownership is shown with both color and text ("Me", the partner's nickname, "Together"), so color is never the only signal.
+- Character animations are disabled when the system "reduce motion" setting is on.
