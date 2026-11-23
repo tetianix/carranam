@@ -1,52 +1,59 @@
-# Carranam 🐾
+# Carranam
 
-**Shared habit & task tracker for couples, with a virtual cat you raise together.**
+**A shared task and habit tracker for couples, built around a virtual pet you raise together.**
 
-Спільний трекер справ для двох. Кожна виконана справа годує вашого спільного котика Мурзіка, маскота застосунку: миска поділена навпіл, і повною вона стає, лише коли кожен зробив свою частину.
+Most to-do apps are built for one person. Couples end up splitting chores and goals across chats, notes and reminders, and nothing keeps both people engaged over time. Carranam puts personal and shared tasks for two people in one place and connects them to a common goal: keeping their cat, Murzik, fed and happy.
 
-![Екрани](design/screens/all-screens.png)
+Every completed task adds a portion to Murzik's bowl. The bowl is split into two halves, one per partner, and it is only full when both people have done their part. A full bowl extends the couple's streak, and over weeks of consistent days Murzik grows from a kitten into a king.
 
-## Ідея
+![Screens](design/screens/all-screens.png)
 
-- **Особисті й спільні справи** в одному списку, кожен партнер має свій колір
-- **Миска навпіл:** по 3 порції на кожного, а спільна справа годує обидві половинки
-- **Мурзік живий:** голодує, їсть, радіє, спить і сумує залежно від вашого дня
-- **Росте разом з вами:** кошеня → підліток → дорослий → король, з аксесуарами за досягнення
-- **Стрік і прогрес:** календар із мордочками котика, хто скільки зробив, досягнення
+## Key features
 
-## Документи
+- **Personal and shared tasks in one list**, each partner with a consistent color across both devices
+- **Split bowl mechanic.** Three portions per partner per day; a shared task feeds both halves
+- **A pet that reflects the day.** Murzik is hungry, waiting, eating, happy, sleeping or sad depending on progress
+- **Long-term growth.** Four growth stages with unlockable accessories, based on total full-bowl days, so a missed day never resets progress
+- **Progress views.** Weekly strip, monthly calendar, per-partner contribution and achievements
+- **Personal perspective.** Each partner sees themselves as "Me" and the other under a nickname they chose
 
-| | |
+## Documentation
+
+| Document | Contents |
 |---|---|
-| 📋 [Бізнес-аналіз (BA)](docs/BA.md) | бачення, аудиторія, механіка, вимоги, user stories, бізнес-правила, модель даних, MVP |
-| 🎨 [Візуал і дизайн](design/DESIGN.md) | екрани, кольори, шрифт, компоненти, Мурзік, іконки, іконка застосунку |
-| 🖼 [Живий макет](https://claude.ai/artifact/1HPMj4AmYbHgtNn2qLizX4) | інтерактивне полотно з усіма екранами |
+| [Business analysis](docs/BA.md) | Vision, target users, core mechanic, functional requirements, user stories, business rules, data model, MVP scope, risks |
+| [Design guide](design/DESIGN.md) | Screens, color system, typography, components, character states, icons, app icon |
+| [Interactive prototype](https://claude.ai/artifact/1HPMj4AmYbHgtNn2qLizX4) | Clickable design canvas with all screens (Ukrainian UI) |
 
-## Структура
+## Repository structure
 
 ```
 docs/
-  BA.md                  бізнес-аналіз продукту
+  BA.md                  Business analysis
 design/
-  DESIGN.md              візуальний гайд
-  overview.png           усе на одній картинці
-  tokens.json            кольори, шрифт, відступи, радіуси
-  screens/               скріншоти екранів
-  murzik/                котик у 6 настроях + оригінальний скетч
-  murzik/stages/         етапи росту з аксесуарами
-  accessories/           бантик, шарфик, корона (SVG)
-  icons/                 іконки інтерфейсу й справ (SVG)
-  app-icon/              іконки застосунку для PWA / iOS / Android
+  DESIGN.md              Design guide
+  overview.png           Visual summary on one page
+  tokens.json            Colors, typography, spacing, radii
+  screens/               Screen mockups
+  murzik/                Character in six moods, plus the original sketch
+  murzik/stages/         Growth stages with accessories
+  accessories/           Bow, scarf, crown (SVG)
+  icons/                 Interface and task icons (SVG)
+  app-icon/              App icons for PWA, iOS and Android
 ```
 
-## Платформа
+## Platform and proposed stack
 
-PWA, тобто один застосунок для iOS і Android, який встановлюється на домашній екран. Пропонований стек: React + Vite, Supabase (Auth, Postgres, Realtime), Web Push.
+Progressive Web App: a single codebase that installs to the home screen on iOS and Android.
 
-## Статус
+- **Frontend:** React, Vite, service worker for offline support
+- **Backend:** Supabase (Auth, Postgres, Realtime, row-level security)
+- **Notifications:** Web Push
 
-🎨 Дизайн і аналіз готові · 🛠 Розробка ще не почалася
+## Status
 
----
+Product analysis and design are complete. Development has not started yet.
 
-Малюнок котика: Тетяна ✏️
+## Credits
+
+Character design: Tetiana Miskevych.
