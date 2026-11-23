@@ -1,231 +1,233 @@
-# Carranam — бізнес-аналіз продукту
+# Carranam: Business Analysis
 
-> Назва продукту: **Carranam** (з книжок Сари Дж. Маас: двоє, чия сила зливається в одну). Маскот застосунку — котик **Мурзік**.
-> Версія документа: 0.1 · 23 листопада 2026
+> **Product:** Carranam, a shared task tracker for couples. **Mascot:** Murzik, the cat.
+> **Document version:** 0.2 · November 2026
 
-## Зміст
+## Contents
 
-1. [Огляд продукту](#1-огляд-продукту)
-2. [Проблема і рішення](#2-проблема-і-рішення)
-3. [Цільова аудиторія](#3-цільова-аудиторія)
-4. [Цілі та метрики успіху](#4-цілі-та-метрики-успіху)
-5. [Ключова механіка](#5-ключова-механіка)
-6. [Функціональні вимоги](#6-функціональні-вимоги)
-7. [User stories і критерії приймання](#7-user-stories-і-критерії-приймання)
-8. [Бізнес-правила](#8-бізнес-правила)
-9. [Нефункціональні вимоги](#9-нефункціональні-вимоги)
-10. [Модель даних](#10-модель-даних)
-11. [Обсяг MVP](#11-обсяг-mvp)
-12. [Ризики і відкриті питання](#12-ризики-і-відкриті-питання)
-13. [Глосарій](#13-глосарій)
+1. [Product overview](#1-product-overview)
+2. [Problem and solution](#2-problem-and-solution)
+3. [Target users](#3-target-users)
+4. [Goals and success metrics](#4-goals-and-success-metrics)
+5. [Core mechanic](#5-core-mechanic)
+6. [Functional requirements](#6-functional-requirements)
+7. [User stories and acceptance criteria](#7-user-stories-and-acceptance-criteria)
+8. [Business rules](#8-business-rules)
+9. [Non-functional requirements](#9-non-functional-requirements)
+10. [Data model](#10-data-model)
+11. [MVP scope](#11-mvp-scope)
+12. [Risks and open questions](#12-risks-and-open-questions)
+13. [Glossary](#13-glossary)
 
 ---
 
-## 1. Огляд продукту
+## 1. Product overview
 
-**Carranam** — трекер справ і звичок для двох. Пара веде спільні й особисті справи, а кожна виконана справа годує їхнього спільного віртуального котика Мурзіка. Котик реагує на ваш день: голодує, їсть, радіє, спить, сумує, а з часом росте.
+Carranam is a task and habit tracker designed for two people. A couple manages personal and shared tasks in one place, and every completed task feeds their shared virtual cat, Murzik. The cat reacts to how the day is going and grows over time as the couple builds consistent habits.
 
-**Одним реченням:** спільний список справ, де замість сухих галочок у вас є котик, про якого ви дбаєте разом.
+**In one sentence:** a shared to-do list where progress is expressed through a pet you look after together, rather than through checkboxes and percentages.
 
-**Платформа:** вебзастосунок (PWA). Один код працює на iOS і Android і встановлюється на домашній екран як звичайний застосунок.
+**Name.** *Carranam* comes from Sarah J. Maas's *Throne of Glass* series, where it describes two people whose powers combine into one. The product applies the same idea to everyday life: two people whose efforts add up to a shared result.
 
-## 2. Проблема і рішення
+**Platform:** Progressive Web App. One codebase runs on iOS and Android and installs to the home screen like a native app.
 
-### Проблема
-- Звичайні трекери справ розраховані на одну людину. Пари ведуть спільні справи в чатах і нотатках, і там вони губляться.
-- Трекери звичок швидко набридають: галочки й відсотки не дають емоційної причини повертатися.
-- Немає простого способу м'яко підтримати партнера («я своє зробила, тепер твоя черга») без нагадувань-докорів.
+## 2. Problem and solution
 
-### Рішення
-- **Один простір на двох:** особисті справи кожного і спільні справи в одному списку, з чітким кольором власника.
-- **Емоційний мотиватор:** спільний котик, якого годують виконані справи. Його настрій видно обом.
-- **Взаємність замість контролю:** миска котика поділена навпіл. Повною вона стає, лише коли кожен зробив свою частину, тож підтримка йде через спільну мету, а не через докори.
+### Problem
+- Mainstream task managers are designed for individuals. Couples coordinate shared responsibilities through chats and notes, where tasks get lost.
+- Habit trackers lose engagement quickly. Checkmarks and percentages offer little emotional reason to come back every day.
+- There is no low-friction way to encourage a partner without it feeling like nagging.
 
-## 3. Цільова аудиторія
+### Solution
+- **One shared space.** Each partner's personal tasks and the couple's shared tasks live in a single list, with a clear color for each owner.
+- **An emotional motivator.** A shared pet whose state depends on completed tasks and is visible to both partners.
+- **Mutual accountability instead of control.** The pet's bowl is split in two and is only full when both partners contribute. Encouragement comes from a common goal, not from reminders aimed at one person.
 
-| Сегмент | Опис | Що для них важливо |
+## 3. Target users
+
+| Segment | Description | Key needs |
 |---|---|---|
-| **Пари, що живуть разом** (основний) | 20–35 років, ділять побут і хочуть не сваритися через справи | спільні побутові справи, прозорість, легкість |
-| **Пари на відстані** | живуть у різних містах чи країнах | відчуття присутності, щоденний «спільний ритуал», часові пояси |
-| **Друзі / співмешканці** (вторинний) | двоє людей зі спільною метою | спільні звички (спорт, навчання) |
+| **Couples living together** (primary) | Ages 20–35, sharing a household and wanting fewer conflicts over chores | Shared household tasks, transparency, ease of use |
+| **Long-distance couples** | Living in different cities or countries | A sense of presence, a shared daily ritual, time zone support |
+| **Friends and roommates** (secondary) | Two people with a common goal | Shared habits such as exercise or study |
 
-### Персони
-- **«Естетка».** Любить милі речі й гарний дизайн, веде багато справ і хоче, щоб спільне планування було приємним, а не «ще одним таск-менеджером».
-- **«Мінімаліст».** Цінує простоту і швидкість. Хоче відмічати справу за 1 тап, без зайвих екранів і налаштувань.
+### Personas
+- **The Organizer.** Manages many tasks, values good design and wants shared planning to feel pleasant rather than like another productivity tool.
+- **The Minimalist.** Values speed and simplicity. Expects to complete a task with a single tap and without extra screens or settings.
 
-## 4. Цілі та метрики успіху
+## 4. Goals and success metrics
 
-| Ціль | Метрика | Цільове значення (MVP) |
+| Goal | Metric | MVP target |
 |---|---|---|
-| Щоденне повернення | DAU/MAU пари | ≥ 60% |
-| Спільність | частка днів, коли **обидва** партнери виконали ≥1 справу | ≥ 50% |
-| Утримання | пари, активні через 4 тижні після старту | ≥ 40% |
-| Цінність механіки | середня довжина стріку | ≥ 5 днів |
-| Активація | пара створена і перша спільна справа виконана в 1-й день | ≥ 70% |
+| Daily engagement | DAU / MAU per couple | ≥ 60% |
+| Shared participation | Share of days on which **both** partners complete at least one task | ≥ 50% |
+| Retention | Couples still active four weeks after onboarding | ≥ 40% |
+| Mechanic effectiveness | Average streak length | ≥ 5 days |
+| Activation | Couple created and first shared task completed on day one | ≥ 70% |
 
-## 5. Ключова механіка
+## 5. Core mechanic
 
-### 5.1 Спільний котик
-У кожної пари один котик, **Мурзік** (ім'я пара може змінити). Його стан залежить від того, як пара справляється сьогодні.
+### 5.1 Shared pet
+Each couple has one cat, **Murzik** (the couple can rename it). Its state reflects how the couple is doing today.
 
-### 5.2 Миска навпіл
-- Щодня в Мурзіка нова порожня миска з **двома половинками**, по одній на партнера.
-- У кожній половинці **3 порції**.
-- Кожна виконана **особиста** справа додає 1 порцію в половинку того, хто її виконав.
-- Кожна виконана **спільна** справа додає по 1 порції в **обидві** половинки.
-- Миска **повна**, коли обидві половинки 3/3. Тоді Мурзік щасливий, а стрік пари росте на +1 день.
+### 5.2 Split bowl
+- Every day Murzik starts with an empty bowl divided into **two halves**, one per partner.
+- Each half holds **3 portions**.
+- A completed **personal** task adds 1 portion to its owner's half.
+- A completed **shared** task adds 1 portion to **both** halves.
+- The bowl is **full** when both halves reach 3/3. Murzik becomes happy and the couple's streak increases by one day.
 
-### 5.3 Настрої котика
+### 5.3 Moods
 
-| Настрій | Коли показується |
+| Mood | Shown when |
 |---|---|
-| Голодний | у мисці 0–2 порції з 6 |
-| Чекає | 3–5 порцій з 6 |
-| Їсть | ~1,3 с анімації одразу після відмітки справи |
-| Щасливий | миска повна (6/6) |
-| Спить | нічний час (23:00–07:00 за часом пари) |
-| Сумує | вчорашня миска не була повною і сьогодні ще немає жодної порції |
+| Hungry | 0–2 of 6 portions |
+| Waiting | 3–5 of 6 portions |
+| Eating | about 1.3 seconds of animation right after a task is completed |
+| Happy | bowl is full (6/6) |
+| Sleeping | night time, 23:00–07:00 in the couple's time zone |
+| Sad | yesterday's bowl was not full and no portions have been added today |
 
-### 5.4 Ріст
-Мурзік росте від **кількості днів із повною мискою**. Рахуються всі такі дні, а не лише поточний стрік, тому пропуск не відкидає назад.
+### 5.4 Growth
+Murzik grows based on the **total number of full-bowl days**, not the current streak, so a missed day never sets progress back.
 
-| Етап | Поріг | Нагорода |
+| Stage | Threshold | Reward |
 |---|---|---|
-| Кошеня | з першого дня | — |
-| Підліток | 7 днів | бантик |
-| Дорослий | 30 днів | шарфик |
-| Король Мурзік | 100 днів | корона |
+| Kitten | from day one | — |
+| Teen | 7 days | bow |
+| Adult | 30 days | scarf |
+| King Murzik | 100 days | crown |
 
-### 5.5 Стрік і «рятування»
-- Стрік — кількість днів поспіль з повною мискою.
-- Пропущений день обнуляє стрік, але **не** рівень котика.
-- Раз на 7 днів стрік можна **врятувати**: наступного дня треба заповнити подвійну миску (по 6 порцій кожному).
+### 5.5 Streak and streak recovery
+- The streak is the number of consecutive full-bowl days.
+- A missed day resets the streak but not the growth level.
+- Once every 7 days the streak can be **recovered** by filling a double bowl the following day (6 portions per partner).
 
-### 5.6 Персоналізація пари
-- Кожен бачить себе як **«я»**, а партнера під прізвиськом, яке **сам** йому дав. Наприклад, Тетяна бачить «котічок 💗🐾», а котічок бачить «прінцесость 💗».
-- **Колір закріплено за людиною**, а не за «я»: Тетяна завжди рожева, котічок завжди блакитний, спільні справи лавандові. Тому на обох телефонах кольори збігаються.
-- Мурзік звертається до кожного по-своєму («Ще 1 від тебе і 2 від котічка 💗🐾»).
+### 5.6 Personal perspective
+- Each partner sees themselves as **"Me"** and the other partner under a **nickname they set themselves**. For example, one partner sees "Alex" while the other sees "Kate".
+- **Colors belong to people, not to "Me".** One partner is always pink, the other always blue, and shared tasks are lavender, so both phones show the same colors.
+- Murzik addresses each partner from their own perspective ("2 more from you and 1 from Alex").
 
-## 6. Функціональні вимоги
+## 6. Functional requirements
 
-Пріоритет за MoSCoW: **M** — must, **S** — should, **C** — could.
+Priority follows MoSCoW: **M** must, **S** should, **C** could.
 
-### 6.1 Акаунт і пара
-| ID | Вимога | Пр. |
+### 6.1 Account and pairing
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-01 | Реєстрація і вхід (email magic link або Apple / Google) | M |
-| FR-02 | Створення пари: власник генерує код або посилання-запрошення | M |
-| FR-03 | Приєднання до пари за кодом або посиланням | M |
-| FR-04 | Під час налаштування кожен вводить своє ім'я, колір і прізвисько для партнера | M |
-| FR-05 | Зміна прізвиська партнера (видно лише тому, хто його поставив) | S |
-| FR-06 | Вихід з пари з архівацією котика та історії | S |
+| FR-01 | Sign up and sign in (email magic link, Apple or Google) | M |
+| FR-02 | Create a couple: the owner generates an invite code or link | M |
+| FR-03 | Join a couple with a code or link | M |
+| FR-04 | During setup each partner sets their own name, color and a nickname for the other | M |
+| FR-05 | Change the partner's nickname (visible only to the person who set it) | S |
+| FR-06 | Leave a couple, archiving the pet and history | S |
 
-### 6.2 Справи
-| ID | Вимога | Пр. |
+### 6.2 Tasks
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-10 | Створення справи: назва, іконка, власник («я» / партнер / разом) | M |
-| FR-11 | Дата або дедлайн, час нагадування | M |
-| FR-12 | Повтор: один раз / щодня / щотижня / свої дні | M |
-| FR-13 | Ціль із кількістю (наприклад, 5 розділів, 150 сторінок): картка заповнюється частково | S |
-| FR-14 | Редагування і видалення справи | M |
-| FR-15 | Відмітка виконання за 1 тап і скасування відмітки | M |
-| FR-16 | Фільтри: усі / мої / партнера / разом | M |
-| FR-17 | Групування: сьогодні / цього тижня / пізніше | S |
-| FR-18 | Нотатка до справи | C |
-| FR-19 | Стрік для справ, що повторюються | S |
+| FR-10 | Create a task with a title, icon and owner (me / partner / together) | M |
+| FR-11 | Set a date or deadline and a reminder time | M |
+| FR-12 | Repeat: once, daily, weekly, custom days | M |
+| FR-13 | Quantity goals (for example 5 chapters or 150 pages) with partial progress on the card | S |
+| FR-14 | Edit and delete tasks | M |
+| FR-15 | Complete a task with one tap and undo completion | M |
+| FR-16 | Filter: all / mine / partner's / together | M |
+| FR-17 | Group by today / this week / later | S |
+| FR-18 | Notes on tasks | C |
+| FR-19 | Per-task streaks for recurring tasks | S |
 
-### 6.3 Котик
-| ID | Вимога | Пр. |
+### 6.3 Pet
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-30 | Головний екран: котик, його настрій, миска з двома половинками і підказка, скільки лишилось кожному | M |
-| FR-31 | Реакція «їсть» одразу після відмітки справи (анімація) | M |
-| FR-32 | Розрахунок настрою за правилами з п. 5.3 | M |
-| FR-33 | Екран росту: поточний етап, прогрес до наступного, нагороди | M |
-| FR-34 | Аксесуари котика за досягнення етапів | S |
-| FR-35 | Перейменування котика | S |
-| FR-36 | Рятування стріку (п. 5.5) | C |
+| FR-30 | Home screen with the pet, its mood, the split bowl and a hint showing what each partner has left | M |
+| FR-31 | "Eating" reaction immediately after a task is completed | M |
+| FR-32 | Mood calculation according to section 5.3 | M |
+| FR-33 | Growth screen: current stage, progress to the next stage, rewards | M |
+| FR-34 | Accessories unlocked at growth stages | S |
+| FR-35 | Rename the pet | S |
+| FR-36 | Streak recovery (section 5.5) | C |
 
-### 6.4 Прогрес
-| ID | Вимога | Пр. |
+### 6.4 Progress
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-40 | Смужка тижня з мордочкою котика на кожен день | M |
-| FR-41 | Календар місяця: повні дні, дні, коли котик сумував, сьогодні | S |
-| FR-42 | Статистика: хто скільки справ зробив, спільні справи, повні миски, поточний стрік | S |
-| FR-43 | Досягнення з прогресом (перший тиждень, 10 повних мисок, 100 спільних справ) | C |
+| FR-40 | Weekly strip showing the pet's face for each day | M |
+| FR-41 | Monthly calendar: full days, sad days, today | S |
+| FR-42 | Statistics: tasks per partner, shared tasks, full bowls, current streak | S |
+| FR-43 | Achievements with progress (first week, 10 full bowls, 100 shared tasks) | C |
 
-### 6.5 Сповіщення
-| ID | Вимога | Пр. |
+### 6.5 Notifications
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-50 | Нагадування про справу в заданий час (push) | M |
-| FR-51 | «Партнер зробив свою частину» — м'яке сповіщення | S |
-| FR-52 | Вечірнє нагадування, якщо миска не повна (не пізніше 21:00) | S |
-| FR-53 | Налаштування тихих годин і вимкнення типів сповіщень | S |
+| FR-50 | Task reminders at a set time (push) | M |
+| FR-51 | Gentle notification when the partner has completed their half | S |
+| FR-52 | Evening reminder if the bowl is not full (no later than 21:00) | S |
+| FR-53 | Quiet hours and per-type notification settings | S |
 
-### 6.6 Синхронізація
-| ID | Вимога | Пр. |
+### 6.6 Sync
+| ID | Requirement | Priority |
 |---|---|---|
-| FR-60 | Зміни партнера з'являються в реальному часі (≤ 2 с) | M |
-| FR-61 | Офлайн-відмітки зберігаються локально і синхронізуються при з'єднанні | S |
+| FR-60 | Partner changes appear in real time (≤ 2 s) | M |
+| FR-61 | Offline completions are stored locally and synced when back online | S |
 
-## 7. User stories і критерії приймання
+## 7. User stories and acceptance criteria
 
-**US-01. Створити пару**
-Як користувачка, я хочу запросити партнера посиланням, щоб у нас з'явився спільний котик.
-- *Given* я зареєстрована і не маю пари, *when* натискаю «Запросити», *then* бачу посилання й код, які можна надіслати в месенджер.
-- *Given* партнер відкрив посилання і зареєструвався, *then* ми обоє бачимо одного й того самого котика і порожню миску.
+**US-01. Create a couple**
+As a user, I want to invite my partner with a link so that we share one pet.
+- *Given* I am registered and not in a couple, *when* I tap "Invite", *then* I see a link and a code I can send through any messenger.
+- *Given* my partner opens the link and signs up, *then* we both see the same pet and an empty bowl.
 
-**US-02. Відмітити особисту справу**
-Як учасник пари, я хочу відмітити свою справу одним тапом, щоб нагодувати котика.
-- *Given* справа «Тренування» належить мені, *when* я тисну на кружечок, *then* картка заливається кольором, з'являється зелена галочка, котик показує «їсть», а в моїй половинці миски +1 порція.
-- *Given* у моїй половинці вже 3/3, *then* порція не додається понад ліміт, але справа зараховується в статистику.
+**US-02. Complete a personal task**
+As a partner, I want to complete my task with one tap so that I feed the pet.
+- *Given* the task "Workout" belongs to me, *when* I tap its check circle, *then* the card fills with color, a green check appears, the pet shows the "eating" state and my half of the bowl gains one portion.
+- *Given* my half is already at 3/3, *then* no portion is added beyond the limit, but the task still counts in statistics.
 
-**US-03. Відмітити спільну справу**
-- *When* будь-хто з пари відмічає спільну справу, *then* +1 порція з'являється в обох половинках, і партнер бачить це в реальному часі.
+**US-03. Complete a shared task**
+- *When* either partner completes a shared task, *then* one portion is added to both halves and the other partner sees it in real time.
 
-**US-04. Заповнити миску**
-- *Given* обидві половинки 3/3, *then* котик стає «щасливим», стрік +1, а день у календарі позначається як повний.
+**US-04. Fill the bowl**
+- *Given* both halves are at 3/3, *then* the pet becomes happy, the streak increases by one and the day is marked as full in the calendar.
 
-**US-05. Скасувати відмітку**
-- *When* я знімаю галочку, *then* порція забирається з відповідної половинки, а настрій і стрік перераховуються.
+**US-05. Undo a completion**
+- *When* I uncheck a task, *then* the portion is removed from the corresponding half and mood and streak are recalculated.
 
-**US-06. Бачити партнера під своїм прізвиськом**
-- *Given* я назвала партнера «котічок 💗🐾», *then* на всіх моїх екранах його справи підписані «котічок 💗🐾», а в нього самого «я».
+**US-06. See my partner under my own nickname**
+- *Given* I named my partner "Alex", *then* all of my screens label their tasks "Alex", while on their device the same tasks are labeled "Me".
 
-**US-07. Додати справу з ціллю**
-- *When* я створюю справу «Дописати курсову» з ціллю 5 розділів і відмічаю 2, *then* картка заповнена на 40% з чіпом «2/5».
+**US-07. Add a task with a quantity goal**
+- *When* I create "Finish coursework" with a goal of 5 chapters and log 2, *then* the card is 40% filled with a "2/5" chip.
 
-**US-08. Пропустити день**
-- *Given* учора миска не була повною, *then* сьогодні вранці котик «сумує», стрік = 0, а рівень і нагороди лишаються.
+**US-08. Miss a day**
+- *Given* yesterday's bowl was not full, *then* this morning the pet is sad, the streak is 0, and the growth level and rewards are kept.
 
-## 8. Бізнес-правила
+## 8. Business rules
 
-| ID | Правило |
+| ID | Rule |
 |---|---|
-| BR-01 | День пари починається о 00:00 за **часовим поясом пари** (задається під час створення, можна змінити). |
-| BR-02 | Ліміт: 3 порції на людину на день. Справи понад ліміт рахуються у статистиці, але не в мисці. |
-| BR-03 | Спільна справа може бути відмічена будь-ким із пари, лише один раз за день. |
-| BR-04 | Справу, що повторюється, можна відмітити один раз за її період (день або тиждень). |
-| BR-05 | Справа з ціллю N зараховується в миску, коли досягнуто N/N. |
-| BR-06 | Відмітки за минулі дні після їх завершення не змінюють миску тих днів. |
-| BR-07 | Стрік рахується в кінці дня пари: +1, якщо миска повна, інакше 0 (з урахуванням рятування). |
-| BR-08 | Рівень котика = кількість днів із повною мискою. Він ніколи не зменшується. |
-| BR-09 | Рятування стріку доступне не частіше ніж раз на 7 днів. |
-| BR-10 | Прізвисько партнера і власний колір — персональні налаштування; колір має бути унікальним у межах пари. |
-| BR-11 | Видалити спільну справу може будь-хто, а особисту лише її власник. |
+| BR-01 | The couple's day starts at 00:00 in the **couple's time zone**, set at creation and editable later. |
+| BR-02 | Limit of 3 portions per partner per day. Tasks beyond the limit count toward statistics but not the bowl. |
+| BR-03 | A shared task can be completed by either partner, once per period. |
+| BR-04 | A recurring task can be completed once per period (day or week). |
+| BR-05 | A task with a quantity goal N counts toward the bowl once N/N is reached. |
+| BR-06 | Completions logged after a day has ended do not change that day's bowl. |
+| BR-07 | The streak is evaluated at the end of the couple's day: +1 if the bowl is full, otherwise reset to 0 (subject to recovery). |
+| BR-08 | Growth level equals the total number of full-bowl days and never decreases. |
+| BR-09 | Streak recovery is available at most once every 7 days. |
+| BR-10 | A partner's nickname and a user's color are personal settings; colors must be unique within a couple. |
+| BR-11 | Either partner can delete a shared task; only the owner can delete a personal task. |
 
-## 9. Нефункціональні вимоги
+## 9. Non-functional requirements
 
-| Категорія | Вимога |
+| Category | Requirement |
 |---|---|
-| Платформи | PWA: iOS Safari 16.4+ (push лише після встановлення на домашній екран), Android Chrome 110+ |
-| Продуктивність | перший екран ≤ 2 с на 4G; реакція на тап ≤ 100 мс (оптимістичне оновлення) |
-| Офлайн | відкриття і відмітки без мережі, синхронізація після відновлення |
-| Доступність | WCAG 2.1 AA: контраст тексту ≥ 4.5:1, зони тапу ≥ 44 px, підписи для зчитувачів екрана, анімації вимикаються з reduce-motion |
-| Безпека | дані пари доступні лише двом її учасникам (row-level security); HTTPS |
-| Приватність | мінімум персональних даних; експорт і видалення акаунта |
-| Локалізація | українська (MVP), англійська пізніше |
+| Platforms | PWA: iOS Safari 16.4+ (push requires installation to the home screen), Android Chrome 110+ |
+| Performance | First screen in ≤ 2 s on 4G; tap response ≤ 100 ms using optimistic updates |
+| Offline | Open the app and complete tasks without a connection; sync on reconnect |
+| Accessibility | WCAG 2.1 AA: text contrast ≥ 4.5:1, touch targets ≥ 44 px, screen reader labels, animations disabled with reduced motion |
+| Security | Couple data is accessible only to its two members (row-level security); HTTPS only |
+| Privacy | Minimal personal data; account export and deletion |
+| Localization | Ukrainian and English |
 
-## 10. Модель даних
+## 10. Data model
 
 ```
 User        id, name, color, timezone, created_at
@@ -239,47 +241,47 @@ CatState    pair_id, level_days, streak, last_rescue_at, accessories[]
 Achievement pair_id, code, progress, unlocked_at
 ```
 
-**Рекомендований стек (пропозиція):** React + Vite (PWA, service worker) на фронтенді, Supabase (Postgres, Auth, Realtime, RLS) на бекенді, Web Push для сповіщень. Хостинг: Vercel, Netlify або GitHub Pages.
+**Proposed stack:** React and Vite (PWA with service worker) on the frontend; Supabase (Postgres, Auth, Realtime, row-level security) on the backend; Web Push for notifications. Hosting on Vercel, Netlify or GitHub Pages.
 
-## 11. Обсяг MVP
+## 11. MVP scope
 
-**Входить у MVP (v0.1)**
-- Пара: створення, запрошення, імена, кольори, прізвиська
-- Справи: створення, редагування, повтор, відмітка, фільтри
-- Котик: миска навпіл, 6 настроїв, анімація «їсть»
-- Стрік і смужка тижня
-- Нагадування про справи
-- Синхронізація в реальному часі
+**In scope for MVP (v0.1)**
+- Pairing: create, invite, names, colors, nicknames
+- Tasks: create, edit, repeat, complete, filters
+- Pet: split bowl, six moods, eating animation
+- Streak and weekly strip
+- Task reminders
+- Real-time sync
 
-**Наступні версії**
-- v0.2: ріст і аксесуари, цілі з кількістю, календар місяця, статистика
-- v0.3: досягнення, рятування стріку, сповіщення «партнер зробив своє»
-- Пізніше: англійська мова, віджети, теми оформлення, свої малюнки котика
+**Later releases**
+- v0.2: growth stages and accessories, quantity goals, monthly calendar, statistics
+- v0.3: achievements, streak recovery, "partner completed their half" notifications
+- Later: widgets, themes, custom pet artwork
 
-## 12. Ризики і відкриті питання
+## 12. Risks and open questions
 
-| # | Ризик / питання | Пропозиція |
+| # | Risk or question | Proposed approach |
 |---|---|---|
-| R-1 | Партнери в різних часових поясах: коли закінчується день? | день за часовим поясом пари (BR-01); показувати обом «до кінця дня Мурзіка: Х год» |
-| R-2 | Почуття провини і тиск («через тебе котик голодний») | м'які тексти без звинувачень, котик не помирає і не тікає, лише сумує |
-| R-3 | Обмеження push на iOS | підказка «встановити на домашній екран» під час онбордингу |
-| R-4 | Нерівне навантаження (один робить більше) | ліміт 3 порції на людину, видно внесок кожного |
-| R-5 | Що буде з котиком, якщо пара розійдеться? | архівування; кожен може почати нову пару |
-| Q-1 | «Carranam» — слово, вигадане Сарою Дж. Маас. Чи лишаємо його для публічного релізу? | для портфоліо ок; перед публічним запуском перевірити торгові марки |
-| Q-2 | Чи потрібна можливість мати кількох котиків або групи більше ніж 2 людини? | не в MVP |
+| R-1 | Partners in different time zones: when does the day end? | Use the couple's time zone (BR-01) and show both partners the time remaining in Murzik's day |
+| R-2 | Guilt and pressure ("the cat is hungry because of you") | Neutral, blame-free copy; the pet never dies or leaves, it only gets sad |
+| R-3 | Push notification limitations on iOS | Prompt to install to the home screen during onboarding |
+| R-4 | Unequal workload between partners | 3-portion cap per partner per day; each partner's contribution is visible |
+| R-5 | What happens to the pet if a couple separates? | Archive the pet; each person can start a new couple |
+| Q-1 | "Carranam" is a term coined by Sarah J. Maas. Is it suitable for a public release? | Acceptable for a portfolio project; run a trademark check before any public launch |
+| Q-2 | Support for multiple pets or groups larger than two? | Out of scope for MVP |
 
-## 13. Глосарій
+## 13. Glossary
 
-| Термін | Значення |
+| Term | Definition |
 |---|---|
-| **Пара** | двоє користувачів зі спільним котиком |
-| **Миска** | щоденний прогрес пари: 2 половинки по 3 порції |
-| **Порція** | одиниця прогресу, яку дає виконана справа |
-| **Повна миска** | обидві половинки 3/3 |
-| **Стрік** | кількість днів поспіль із повною мискою |
-| **Рівень** | загальна кількість днів із повною мискою, визначає етап росту котика |
-| **Прізвисько** | ім'я, під яким користувач бачить партнера |
+| **Couple** | Two users who share one pet |
+| **Bowl** | The couple's daily progress: two halves of 3 portions each |
+| **Portion** | The unit of progress earned by completing a task |
+| **Full bowl** | Both halves at 3/3 |
+| **Streak** | Number of consecutive full-bowl days |
+| **Level** | Total number of full-bowl days; determines the pet's growth stage |
+| **Nickname** | The name a user sees for their partner |
 
 ---
 
-Дизайн і всі екрани: [design/DESIGN.md](../design/DESIGN.md)
+Design and screens: [design/DESIGN.md](../design/DESIGN.md)
